@@ -6,10 +6,4 @@ export const theme = extendTheme({
   ...defaultTheme,
   // components: { ...components },
   components: { Input },
-  // colors: {
-  //   brand: {
-  //     100: "#f7fafc",
-  //     900: "#1a202c",
-  //   },
-  // },
 });

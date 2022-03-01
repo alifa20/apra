@@ -7,6 +7,7 @@ import {
 } from "./generated/graphql";
 import { theme } from "./layout/theme";
 import { Search } from "./components/Search/Search";
+import { SearchResult } from "./components/SearchResult/SearchResult";
 
 export const App = () => {
   const options: Omit<Urql.UseQueryArgs<GetPhotosQueryVariables>, "query"> = {
@@ -35,6 +36,7 @@ export const App = () => {
           <Search onSearch={onSearch} />
           {fetching && <Spinner color="whiteAlpha.800" />}
           <Text>Searching for: </Text>
+          <SearchResult data={data} />
           {error && <Error>Something went wrong!</Error>}
         </VStack>
       </Box>
