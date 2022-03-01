@@ -24,6 +24,7 @@ export const Search = ({ onSearch }: Props) => {
   const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
     if (event.key === "Enter") {
       onSearch(term);
+      setTerm("");
     }
   };
 
@@ -31,7 +32,12 @@ export const Search = ({ onSearch }: Props) => {
     <Flex justifyContent="center">
       <Box w={400}>
         <InputGroup>
-          <Input onKeyDown={onKeyDown} onChange={onChange} />
+          <Input
+            autoFocus
+            onKeyDown={onKeyDown}
+            onChange={onChange}
+            value={term}
+          />
           <InputRightElement>
             <SearchIcon color="whiteAlpha.700" />
           </InputRightElement>

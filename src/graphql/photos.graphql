@@ -1,0 +1,10 @@
+query GetPhotos($options: PageQueryOptions) {
+  photos(options: $options) {
+    data {
+      id
+      title
+      url
+      thumbnailUrl
+    }
+  }
+}

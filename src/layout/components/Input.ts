@@ -4,6 +4,7 @@ import type { PartsStyleFunction } from "@chakra-ui/theme-tools";
 const variantOutline: PartsStyleFunction<typeof parts> = () => {
   return {
     field: {
+      color: "whiteAlpha.900",
       border: "1px solid",
       borderColor: "gray.400",
       _hover: {

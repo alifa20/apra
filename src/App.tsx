@@ -1,9 +1,30 @@
 import { Box, ChakraProvider, Spinner, Text, VStack } from "@chakra-ui/react";
-import React from "react";
+import * as Urql from "urql";
+import { Error } from "./components/Error/Error";
+import {
+  GetPhotosQueryVariables,
+  useGetPhotosQuery,
+} from "./generated/graphql";
 import { theme } from "./layout/theme";
-import { Search } from "./Search/Search";
+import { Search } from "./components/Search/Search";
 
 export const App = () => {
+  const options: Omit<Urql.UseQueryArgs<GetPhotosQueryVariables>, "query"> = {
+    variables: {
+      options: {
+        paginate: {
+          page: 1,
+          limit: 5,
+        },
+      },
+    },
+  };
+
+  const [result] = useGetPhotosQuery(options);
+  const { data, fetching, error } = result;
+
+  console.log(data);
+
   const onSearch = (t) => {
     // TODO
   };
@@ -12,8 +33,9 @@ export const App = () => {
       <Box textAlign="center" fontSize="xl" p={10} h="100vh" bg="blue.800">
         <VStack>
           <Search onSearch={onSearch} />
-          <Spinner color="whiteAlpha.800" />
+          {fetching && <Spinner color="whiteAlpha.800" />}
           <Text>Searching for: </Text>
+          {error && <Error>Something went wrong!</Error>}
         </VStack>
       </Box>
     </ChakraProvider>
