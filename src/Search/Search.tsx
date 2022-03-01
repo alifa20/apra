@@ -33,7 +33,7 @@ export const Search = ({ onSearch }: Props) => {
         <InputGroup>
           <Input onKeyDown={onKeyDown} onChange={onChange} />
           <InputRightElement>
-            <SearchIcon />
+            <SearchIcon color="whiteAlpha.700" />
           </InputRightElement>
         </InputGroup>
       </Box>
