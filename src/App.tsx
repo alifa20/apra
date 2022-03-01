@@ -1,40 +1,27 @@
-import * as React from "react";
 import {
-  ChakraProvider,
   Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
+  ChakraProvider,
+  Spinner,
   theme,
+  VStack,
+  Text,
 } from "@chakra-ui/react";
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
-import { Logo } from "./Logo";
+import React, { useState } from "react";
 import { Search } from "./Search/Search";
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Search />
-      {/* <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
+export const App = () => {
+  const onSearch = (t) => {
+    // TODO
+  };
+  return (
+    <ChakraProvider theme={theme}>
+      <Box textAlign="center" fontSize="xl" p={10}>
+        <VStack>
+          <Search onSearch={onSearch} />
+          <Spinner />
+          <Text>Searching for: </Text>
         </VStack>
-      </Grid> */}
-    </Box>
-  </ChakraProvider>
-);
+      </Box>
+    </ChakraProvider>
+  );
+};
