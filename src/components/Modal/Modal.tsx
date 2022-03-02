@@ -30,18 +30,11 @@ export const Modal = ({ photo, isOpen, dispatch }: Props) => {
 		<CkModal isOpen={isOpen} onClose={onClose}>
 			<ModalOverlay />
 			<ModalContent>
-				<ModalHeader>Modal Title</ModalHeader>
+				<ModalHeader>{photo?.id}</ModalHeader>
 				<ModalCloseButton />
 				<ModalBody>
-					<Image
-						rounded={'lg'}
-						height={230}
-						width={282}
-						objectFit={'cover'}
-						src={photo?.url ?? IMAGE}
-					/>
+					<Image rounded={'lg'} src={photo?.url ?? IMAGE} />
 				</ModalBody>
-
 				<ModalFooter justifyContent='flex-start'>
 					<Button colorScheme='blue' mr={3} onClick={onClose}>
 						Close
