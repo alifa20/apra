@@ -539,11 +539,9 @@ export const GetPhotosDocument = gql`
 	}
 `
 
-export function useGetPhotosQuery(
+export const useGetPhotosQuery = (
 	options?: Omit<Urql.UseQueryArgs<GetPhotosQueryVariables>, 'query'>
-) {
-	return Urql.useQuery<GetPhotosQuery>({ query: GetPhotosDocument, ...options })
-}
+) => Urql.useQuery<GetPhotosQuery>({ query: GetPhotosDocument, ...options })
 export const GetPostsDocument = gql`
 	query GetPosts {
 		posts {
@@ -554,8 +552,6 @@ export const GetPostsDocument = gql`
 	}
 `
 
-export function useGetPostsQuery(
+export const useGetPostsQuery = (
 	options?: Omit<Urql.UseQueryArgs<GetPostsQueryVariables>, 'query'>
-) {
-	return Urql.useQuery<GetPostsQuery>({ query: GetPostsDocument, ...options })
-}
+) => Urql.useQuery<GetPostsQuery>({ query: GetPostsDocument, ...options })

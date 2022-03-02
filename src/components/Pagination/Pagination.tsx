@@ -9,32 +9,30 @@ interface Props {
 	dispatch: Dispatch<PaginationAction>
 }
 
-export const Pagination = ({ page, hasNext, hasBack, dispatch }: Props) => {
-	return (
-		<HStack justifyContent='space-between' minW='342px'>
-			<Button
-				size='sm'
-				data-testid='btn-back'
-				disabled={!hasBack}
-				onClick={() => {
-					dispatch({ type: 'SET_PAGE', payload: { page: page - 1 } })
-				}}
-			>
-				Back
-			</Button>
-			<Text fontSize='sm' color='white'>
-				Page: {page}
-			</Text>
-			<Button
-				size='sm'
-				disabled={!hasNext}
-				data-testid='btn-next'
-				onClick={() => {
-					dispatch({ type: 'SET_PAGE', payload: { page: page + 1 } })
-				}}
-			>
-				Next
-			</Button>
-		</HStack>
-	)
-}
+export const Pagination = ({ page, hasNext, hasBack, dispatch }: Props) => (
+	<HStack justifyContent='space-between' minW='342px'>
+		<Button
+			size='sm'
+			data-testid='btn-back'
+			disabled={!hasBack}
+			onClick={() => {
+				dispatch({ type: 'SET_PAGE', payload: { page: page - 1 } })
+			}}
+		>
+			Back
+		</Button>
+		<Text fontSize='sm' color='white'>
+			Page: {page}
+		</Text>
+		<Button
+			size='sm'
+			disabled={!hasNext}
+			data-testid='btn-next'
+			onClick={() => {
+				dispatch({ type: 'SET_PAGE', payload: { page: page + 1 } })
+			}}
+		>
+			Next
+		</Button>
+	</HStack>
+)

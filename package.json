@@ -66,9 +66,11 @@
 		"eslint": "^8.10.0",
 		"eslint-config-airbnb": "^19.0.4",
 		"eslint-config-prettier": "^8.4.0",
+		"eslint-plugin-prefer-arrow-functions": "^3.1.4",
 		"eslint-plugin-prettier": "^4.0.0",
 		"husky": ">=6",
 		"lint-staged": ">=10",
-		"prettier": "^2.5.1"
+		"prettier": "^2.5.1",
+		"standard-version": "^9.3.2"
 	}
 }
