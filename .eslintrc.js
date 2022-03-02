@@ -1,18 +1,14 @@
+const prettier = require('./prettier.config')
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    node: true,
-  },
-  extends: ["plugin:react/recommended", "airbnb", "prettier"],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: "latest",
-    sourceType: "module",
-  },
-  plugins: ["react", "@typescript-eslint"],
-  rules: { indent: "error" },
-};
+	env: {
+		browser: true,
+		es6: true,
+	},
+	extends: ['react-app', 'prettier'],
+	plugins: ['react', 'prettier'],
+	parser: '@typescript-eslint/parser',
+	rules: {
+		'import/prefer-default-export': 'off',
+		'prettier/prettier': ['error', prettier],
+	},
+}

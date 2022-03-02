@@ -1,10 +1,10 @@
-import React from "react";
-import { Photo } from "../../generated/graphql";
-import { Text } from "@chakra-ui/react";
+import React from 'react'
+import { Photo } from '../../generated/graphql'
+import { Text } from '@chakra-ui/react'
 
 interface Props {
-  data?: Photo | null;
+	data?: Photo | null
 }
 export const Row = ({ data }: Props) => {
-  return <Text color="white">{data?.title}</Text>;
-};
+	return <Text color='white'>{data?.title}</Text>
+}
