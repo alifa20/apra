@@ -2,6 +2,7 @@ import {
 	Box,
 	Center,
 	Image,
+	LinkOverlay,
 	Stack,
 	Text,
 	useColorModeValue,
@@ -55,20 +56,26 @@ export const PhotoCard = ({ data, dispatch }: Props) => {
 						},
 					}}
 				>
-					<Image
-						rounded={'lg'}
-						height={230}
-						width={282}
-						objectFit={'cover'}
-						src={data?.thumbnailUrl ?? IMAGE}
-						cursor='pointer'
+					<LinkOverlay
+						href='#'
 						data-testid='image-item'
-						onClick={() => {
+						onClick={(e) => {
+							e.preventDefault()
 							if (data) {
 								dispatch({ type: 'PHOTO_SELECT', payload: { photo: data } })
 							}
 						}}
-					/>
+					>
+						<Image
+							rounded={'lg'}
+							height={230}
+							width={282}
+							alt={`thumbnail for ${data?.title}`}
+							objectFit={'cover'}
+							src={data?.thumbnailUrl ?? IMAGE}
+							cursor='pointer'
+						/>
+					</LinkOverlay>
 				</Box>
 				<Stack pt={10} align={'center'}>
 					<Text color={'gray.500'} fontSize={'sm'}>
