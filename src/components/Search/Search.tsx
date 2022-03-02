@@ -21,7 +21,6 @@ export const Search = ({ dispatch, placeholder }: Props) => {
 
 	const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
 		if (event.key === 'Enter') {
-			// onSearch(term)
 			dispatch({ type: 'SEARCH_SUCCESS', payload: { term } })
 			setTerm('')
 		}
@@ -35,6 +34,7 @@ export const Search = ({ dispatch, placeholder }: Props) => {
 					onKeyDown={onKeyDown}
 					onChange={onChange}
 					value={term}
+					role='search'
 					placeholder={placeholder}
 				/>
 				<InputRightElement>

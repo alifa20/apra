@@ -14,6 +14,7 @@ export const Pagination = ({ page, hasNext, hasBack, dispatch }: Props) => {
 		<HStack justifyContent='space-between' minW='342px'>
 			<Button
 				size='sm'
+				data-testid='btn-back'
 				disabled={!hasBack}
 				onClick={() => {
 					dispatch({ type: 'SET_PAGE', payload: { page: page - 1 } })
@@ -27,6 +28,7 @@ export const Pagination = ({ page, hasNext, hasBack, dispatch }: Props) => {
 			<Button
 				size='sm'
 				disabled={!hasNext}
+				data-testid='btn-next'
 				onClick={() => {
 					dispatch({ type: 'SET_PAGE', payload: { page: page + 1 } })
 				}}

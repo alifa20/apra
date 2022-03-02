@@ -2,6 +2,8 @@
 
 ✅ urql graphql client
 
+✅ Accessibility
+
 ✅ React component composition pattern
 
 ✅ Chakra ui

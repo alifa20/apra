@@ -25,8 +25,7 @@ export const PhotoCard = ({ data, dispatch }: Props) => {
 				role={'group'}
 				p={6}
 				maxW={'330px'}
-				// w={'full'}
-				w={'330px'}
+				w={'full'}
 				bg={useColorModeValue('white', 'gray.800')}
 				boxShadow={'2xl'}
 				rounded={'lg'}
@@ -63,6 +62,7 @@ export const PhotoCard = ({ data, dispatch }: Props) => {
 						objectFit={'cover'}
 						src={data?.thumbnailUrl ?? IMAGE}
 						cursor='pointer'
+						data-testid='image-item'
 						onClick={() => {
 							if (data) {
 								dispatch({ type: 'PHOTO_SELECT', payload: { photo: data } })
