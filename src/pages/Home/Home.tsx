@@ -35,15 +35,17 @@ export const Home = () => {
 	const { data, fetching, error } = result
 
 	return (
-		<Box
-			textAlign='center'
-			fontSize='xl'
-			p={10}
-			minH='100vh'
-			h='full'
-			bg='blue.800'
-		>
-			<VStack>
+		<Box textAlign='center' fontSize='xl' minH='100vh' h='full' bg='blue.800'>
+			<VStack
+				position='fixed'
+				zIndex={22}
+				bg='blue.800'
+				w='full'
+				pt={5}
+				pb={5}
+				borderBottomWidth={1}
+				borderColor='blue.200'
+			>
 				<Search dispatch={dispatch} />
 				<HStack>
 					{fetching && <Spinner color='whiteAlpha.800' />}
@@ -53,7 +55,9 @@ export const Home = () => {
 						</Text>
 					)}
 				</HStack>
-				<Box w='full'>
+			</VStack>
+			<VStack>
+				<Box w='full' paddingTop={40}>
 					<SearchResult
 						data={data}
 						renderItem={({ row }) => (
