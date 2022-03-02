@@ -15,10 +15,11 @@ import React, {
 import { SearchAction } from './types'
 
 interface Props {
+	placeholder?: string
 	dispatch: Dispatch<SearchAction>
 }
 
-export const Search = ({ dispatch }: Props) => {
+export const Search = ({ dispatch, placeholder }: Props) => {
 	const [term, setTerm] = useState('')
 
 	const onChange: ChangeEventHandler<HTMLInputElement> = (event) =>
@@ -33,20 +34,19 @@ export const Search = ({ dispatch }: Props) => {
 	}
 
 	return (
-		<Flex justifyContent='center'>
-			<Box w={400}>
-				<InputGroup>
-					<Input
-						autoFocus
-						onKeyDown={onKeyDown}
-						onChange={onChange}
-						value={term}
-					/>
-					<InputRightElement>
-						<SearchIcon color='whiteAlpha.700' />
-					</InputRightElement>
-				</InputGroup>
-			</Box>
-		</Flex>
+		<Box w='full' maxW={400}>
+			<InputGroup>
+				<Input
+					autoFocus
+					onKeyDown={onKeyDown}
+					onChange={onChange}
+					value={term}
+					placeholder={placeholder}
+				/>
+				<InputRightElement>
+					<SearchIcon color='whiteAlpha.700' />
+				</InputRightElement>
+			</InputGroup>
+		</Box>
 	)
 }

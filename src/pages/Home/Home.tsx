@@ -34,9 +34,8 @@ export const Home = () => {
 
 	const hasNext = page * limit < (data?.photos?.meta?.totalCount ?? 0)
 	const hasBack = page > 1
-	const hasPhotos = (data?.photos?.data?.length ?? 0) > 0
-
-	console.log('page', page)
+	const showPagination = (data?.photos?.meta?.totalCount ?? 0) > limit
+	const hasPhotos = (data?.photos?.data?.length ?? 0) > 0 && !!searchTerm
 
 	return (
 		<Box textAlign='center' fontSize='xl' minH='100vh' h='full' bg='blue.800'>
@@ -49,8 +48,10 @@ export const Home = () => {
 				pb={5}
 				borderBottomWidth={1}
 				borderColor='blue.200'
+				pr={5}
+				pl={5}
 			>
-				<Search dispatch={dispatch} />
+				<Search dispatch={dispatch} placeholder='Search here...' />
 				<HStack>
 					{fetching && <Spinner color='whiteAlpha.800' />}
 					{!!searchTerm && (
@@ -59,7 +60,7 @@ export const Home = () => {
 						</Text>
 					)}
 				</HStack>
-				{hasPhotos && (
+				{showPagination && (
 					<Pagination
 						page={page}
 						hasNext={hasNext}
@@ -69,14 +70,16 @@ export const Home = () => {
 				)}
 			</VStack>
 			<VStack>
-				<Box w='full' paddingTop={40}>
-					<SearchResult
-						data={data}
-						renderItem={({ row }) => (
-							<PhotoCard key={row?.id} data={row} dispatch={dispatch} />
-						)}
-					/>
-				</Box>
+				{hasPhotos && (
+					<Box w='full' paddingTop={40}>
+						<SearchResult
+							data={data}
+							renderItem={({ row }) => (
+								<PhotoCard key={row?.id} data={row} dispatch={dispatch} />
+							)}
+						/>
+					</Box>
+				)}
 				<Modal
 					isOpen={state.status === 'MODAL_OPEN'}
 					photo={state.selectedPhoto ?? null}
