@@ -5,6 +5,7 @@ import { GetPhotosQueryVariables, useGetPhotosQuery } from './generated/graphql'
 import { theme } from './layout/theme'
 import { Search } from './components/Search/Search'
 import { SearchResult } from './components/SearchResult/SearchResult'
+import { PhotoCard } from './components/PhotoCard/PhotoCard'
 
 export const App = () => {
 	const options: Omit<Urql.UseQueryArgs<GetPhotosQueryVariables>, 'query'> = {
@@ -12,7 +13,7 @@ export const App = () => {
 			options: {
 				paginate: {
 					page: 1,
-					limit: 5,
+					limit: 15,
 				},
 			},
 		},
@@ -21,19 +22,19 @@ export const App = () => {
 	const [result] = useGetPhotosQuery(options)
 	const { data, fetching, error } = result
 
-	console.log(data)
-
 	const onSearch = (t) => {
 		// TODO
 	}
 	return (
 		<ChakraProvider theme={theme}>
-			<Box textAlign='center' fontSize='xl' p={10} h='100vh' bg='blue.800'>
+			<Box textAlign='center' fontSize='xl' p={10} h='full' bg='blue.800'>
 				<VStack>
 					<Search onSearch={onSearch} />
 					{fetching && <Spinner color='whiteAlpha.800' />}
 					<Text>Searching for: </Text>
-					<SearchResult data={data} />
+					<Box w='full'>
+						<SearchResult data={data} />
+					</Box>
 					{error && <Error>Something went wrong!</Error>}
 				</VStack>
 			</Box>
