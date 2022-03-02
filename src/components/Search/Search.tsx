@@ -1,11 +1,5 @@
 import { SearchIcon } from '@chakra-ui/icons'
-import {
-	Box,
-	Flex,
-	Input,
-	InputGroup,
-	InputRightElement,
-} from '@chakra-ui/react'
+import { Box, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 import React, {
 	ChangeEventHandler,
 	Dispatch,
