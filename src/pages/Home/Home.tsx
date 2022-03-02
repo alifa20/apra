@@ -3,6 +3,7 @@ import { useReducer } from 'react'
 import * as Urql from 'urql'
 import { Error } from '../../components/Error/Error'
 import { Modal } from '../../components/Modal/Modal'
+import { Pagination } from '../../components/Pagination/Pagination'
 import { PhotoCard } from '../../components/PhotoCard/PhotoCard'
 import { Search } from '../../components/Search/Search'
 import { SearchResult } from '../../components/SearchResult/SearchResult'
@@ -12,27 +13,30 @@ import {
 } from '../../generated/graphql'
 import { initialState, reducer } from './reducer'
 
+const limit = 15
 export const Home = () => {
 	const [state, dispatch] = useReducer(reducer, initialState)
-	const { searchTerm } = state
+	const { searchTerm, page } = state
 
 	const options: Omit<Urql.UseQueryArgs<GetPhotosQueryVariables>, 'query'> = {
 		variables: {
 			options: {
-				search: {
-					q: searchTerm,
-				},
-				paginate: {
-					page: 1,
-					limit: 15,
-				},
+				search: { q: searchTerm },
+				paginate: { page, limit },
 			},
 		},
 		pause: !searchTerm,
 	}
 
 	const [result] = useGetPhotosQuery(options)
+
 	const { data, fetching, error } = result
+
+	const hasNext = page * limit < (data?.photos?.meta?.totalCount ?? 0)
+	const hasBack = page > 1
+	const hasPhotos = (data?.photos?.data?.length ?? 0) > 0
+
+	console.log('page', page)
 
 	return (
 		<Box textAlign='center' fontSize='xl' minH='100vh' h='full' bg='blue.800'>
@@ -55,6 +59,14 @@ export const Home = () => {
 						</Text>
 					)}
 				</HStack>
+				{hasPhotos && (
+					<Pagination
+						page={page}
+						hasNext={hasNext}
+						hasBack={hasBack}
+						dispatch={dispatch}
+					/>
+				)}
 			</VStack>
 			<VStack>
 				<Box w='full' paddingTop={40}>

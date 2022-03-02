@@ -509,6 +509,7 @@ export type GetPhotosQuery = {
 			url?: string | null
 			thumbnailUrl?: string | null
 		} | null> | null
+		meta?: { __typename?: 'PageMetadata'; totalCount?: number | null } | null
 	} | null
 }
 
@@ -531,6 +532,9 @@ export const GetPhotosDocument = gql`
 				url
 				thumbnailUrl
 			}
+			meta {
+				totalCount
+			}
 		}
 	}
 `
@@ -538,10 +542,7 @@ export const GetPhotosDocument = gql`
 export function useGetPhotosQuery(
 	options?: Omit<Urql.UseQueryArgs<GetPhotosQueryVariables>, 'query'>
 ) {
-	return Urql.useQuery<GetPhotosQuery>({
-		query: GetPhotosDocument,
-		...options,
-	})
+	return Urql.useQuery<GetPhotosQuery>({ query: GetPhotosDocument, ...options })
 }
 export const GetPostsDocument = gql`
 	query GetPosts {
