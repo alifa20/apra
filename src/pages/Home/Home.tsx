@@ -53,7 +53,10 @@ export const Home = () => {
 			>
 				<Search dispatch={dispatch} placeholder='Search here...' />
 				<HStack>
-					{fetching && <Spinner color='whiteAlpha.800' />}
+					<Spinner
+						color='whiteAlpha.800'
+						visibility={fetching ? 'visible' : 'hidden'}
+					/>
 					{!!searchTerm && (
 						<Text color='whiteAlpha.800' fontSize='md'>
 							Search result for: <strong>{searchTerm}</strong>
