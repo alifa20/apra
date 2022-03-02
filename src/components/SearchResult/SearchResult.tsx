@@ -1,19 +1,12 @@
-import { Box, HStack } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import React from 'react'
-import { GetPhotosQuery } from '../../generated/graphql'
-import { PhotoCard } from '../PhotoCard/PhotoCard'
-import { Row } from './Row'
+import { GetPhotosQuery, Photo } from '../../generated/graphql'
 
 interface Props {
 	data?: GetPhotosQuery
+	renderItem: (props: { row: Photo | null }) => JSX.Element
 }
-export const SearchResult = ({ data }: Props) => {
-	return (
-		<Box>
-			{data?.photos?.data?.map((row) => (
-				<PhotoCard key={row?.id} data={row} />
-				// <Box key={row?.id} bg='red' m={2} w='40px' height='40px' />
-			))}
-		</Box>
-	)
-}
+
+export const SearchResult = ({ data, renderItem }: Props) => (
+	<Box>{data?.photos?.data?.map((row) => renderItem({ row }))}</Box>
+)

@@ -8,14 +8,17 @@ import {
 } from '@chakra-ui/react'
 import React, {
 	ChangeEventHandler,
+	Dispatch,
 	KeyboardEventHandler,
 	useState,
 } from 'react'
+import { SearchAction } from './types'
 
 interface Props {
-	onSearch: (term: string) => void
+	dispatch: Dispatch<SearchAction>
 }
-export const Search = ({ onSearch }: Props) => {
+
+export const Search = ({ dispatch }: Props) => {
 	const [term, setTerm] = useState('')
 
 	const onChange: ChangeEventHandler<HTMLInputElement> = (event) =>
@@ -23,7 +26,8 @@ export const Search = ({ onSearch }: Props) => {
 
 	const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
 		if (event.key === 'Enter') {
-			onSearch(term)
+			// onSearch(term)
+			dispatch({ type: 'SEARCH_SUCCESS', payload: { term } })
 			setTerm('')
 		}
 	}
